@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property Name="in_Class" Type="InArgument(x:String)" />
     <x:Property Name="in_Subclass" Type="InArgument(x:String)" />
+    <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1254,1540</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1254,2217</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SubclassNavigate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -95,28 +96,48 @@
       <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
       <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This workflow is designed to reach the leaf node of the table. &#xD;&#xA;&#xD;&#xA;The data in the table will then be extracted and used to add a new row to the CNAE data table." DisplayName="SubclassNavigate" sap:VirtualizedContainerService.HintSize="644,1475" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This workflow is designed to reach the leaf node of the table. &#xA;&#xA;The data in the table will then be extracted and used to add a new row to the CNAE data table." DisplayName="SubclassNavigate" sap:VirtualizedContainerService.HintSize="644,2152" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="582,1307" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="35d95428-7f86-45d2-826f-d65d1033b03b" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="582,1984" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="35d95428-7f86-45d2-826f-d65d1033b03b" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="548,1090" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="548,1767" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="ClickTargetName" />
               <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
               <Variable x:TypeArguments="x:String" Name="final" />
-              <Variable x:TypeArguments="sd:DataTable" Name="dt_CNAE" />
+              <Variable x:TypeArguments="sd:DataTable" Name="dt_Subclass" />
               <Variable x:TypeArguments="x:String" Name="Subclass" />
+              <Variable x:TypeArguments="x:String" Name="SectionCodeTD" />
+              <Variable x:TypeArguments="x:String" Name="SectionTD" />
+              <Variable x:TypeArguments="x:String" Name="DivisionCodeTD" />
+              <Variable x:TypeArguments="x:String" Name="DivisionTD" />
+              <Variable x:TypeArguments="x:String" Name="GroupCodeTD" />
+              <Variable x:TypeArguments="x:String" Name="GroupTD" />
+              <Variable x:TypeArguments="x:String" Name="ClassCodeTD" />
+              <Variable x:TypeArguments="x:String" Name="ClassTD" />
+              <Variable x:TypeArguments="x:String" Name="SubclassCodeTD" />
+              <Variable x:TypeArguments="x:String" Name="SubclassTD" />
+              <Variable x:TypeArguments="x:String" Name="testando" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -128,7 +149,7 @@
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=classe&amp;tipo=cnae&amp;versao=10&amp;classe=01113" CvTextArgument="0111-3/01" CvType="Text" DesignTimeRectangle="275, 988, 53, 14" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'0111-3/01'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='5' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='{0}' /&gt;&quot;, in_Subclass)]" Guid="716406e3-7dd8-4939-876f-055995625fdf" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADkAAAASCAYAAADhc3ZwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFFSURBVFhH7VM7DsIwDOVC3TkSW09Ria0SE+oJOrEgcQYUsTODeoeOpq7jxAlp6G8hMDwp8Sd+z3Y2bdtC6viLTAW/JvIBdZ5DtiXslRuIaE5F5yugfi6zS6jS1szyCzTSryrIyps9D8UJf4i3EUmEKlDm7JKzZJbZHUhizwvsuvPu9DB+5EH3G+yNj85GvI6jWlGReorcIa+g021Beqo9ijeRyEnnelOi9+VAbL2ISL877l2VVIwel2Km2QcRXDXkEN4seccz5rHY2SIZQ6Sn2sPwauJk9WbFRHL+l4jkeDs9Xt2VRMb/JGOpSCbSw2ugzwFzDeHIn+T8ESI5SCf2j84X88nOcCbiNBY3SebRZpFPN8Nr0iiRCCJFCAWvLdIQ1jVD/9HE6ib0cb6vw2iRqaIXeTiebTcTwVXdXZGp4y8yDbTwAsKK4F2vaUYZAAAAAElFTkSuQmCC" InformativeScreenshot="73940f3525b81ffaea5714e1aeeec868.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_CNAE]" DisplayName="Extract Table Data CNAE" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-0' ReferenceIdx='0' Name='Headers'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1' ReferenceIdx='1' Name='CurrentSection'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1 Url' ReferenceIdx='2' Name='Column-1 Url' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2' ReferenceIdx='3' Name='Details'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2 Url' ReferenceIdx='4' Name='Column-2 Url' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' name2='Column-1 Url' attr2='href' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="486,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="35d95428-7f86-45d2-826f-d65d1033b03b" Version="V3">
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_Subclass]" DisplayName="Extract Table Data CNAE" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-0' ReferenceIdx='0' Name='Headers'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1' ReferenceIdx='1' Name='CurrentSection'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-1 Url' ReferenceIdx='2' Name='Column-1 Url' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2' ReferenceIdx='3' Name='Details'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column-2 Url' ReferenceIdx='4' Name='Column-2 Url' IsDeleted='true'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' name2='Column-1 Url' attr2='href' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="486,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="35d95428-7f86-45d2-826f-d65d1033b03b" Version="V3">
               <uix:NExtractData.Target>
                 <uix:TargetAnchorable DesignTimeRectangle="98, 360, 860, 157" DesignTimeScaleFactor="1" FriendlyName="'Seção: A'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="5c210c54-6c9b-4f05-9759-1093c9a55abb" InformativeScreenshot="10976143eab238d267322b48b1742252.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
               </uix:NExtractData.Target>
@@ -143,21 +164,113 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="DemoFolder" sap:VirtualizedContainerService.HintSize="388,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="CNAE">
                     <ui:AddQueueItem.ItemInformation>
-                      <InArgument x:TypeArguments="x:String" x:Key="Código Secção">[dt_CNAE.Rows(0)("CurrentSection").ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Secção">[dt_CNAE.Rows(0)("Details").ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Código Divisão">[dt_CNAE.Rows(1)("Details").ToString.Split(" "c).First.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Divisão">[String.Join(" ", dt_CNAE.Rows(1)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Código Grupo">[dt_CNAE.Rows(2)("Details").ToString.Split(" "c).First.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Grupo">[String.Join(" ", dt_CNAE.Rows(2)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Código Classe">[dt_CNAE.Rows(3)("Details").ToString.Split(" "c).First.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Classe">[String.Join(" ", dt_CNAE.Rows(3)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Código Subclasse">[dt_CNAE.Rows(4)("Details").ToString.Split(" "c).First.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Subclasse">[String.Join(" ", dt_CNAE.Rows(4)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Código Secção">[dt_Subclass.Rows(0)("CurrentSection").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Secção">[dt_Subclass.Rows(0)("Details").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Código Divisão">[dt_Subclass.Rows(1)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Divisão">[String.Join(" ", dt_Subclass.Rows(1)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Código Grupo">[dt_Subclass.Rows(2)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Grupo">[String.Join(" ", dt_Subclass.Rows(2)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Código Classe">[dt_Subclass.Rows(3)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Classe">[String.Join(" ", dt_Subclass.Rows(3)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Código Subclasse">[dt_Subclass.Rows(4)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Subclasse">[String.Join(" ", dt_Subclass.Rows(4)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
                     </ui:AddQueueItem.ItemInformation>
                   </ui:AddQueueItem>
                 </Sequence>
               </ui:CommentOut.Body>
             </ui:CommentOut>
+            <ui:MultipleAssign sap2010:Annotation.AnnotationText="Use dt_Subclass to Assign Variables according to CNAE data table" DisplayName="Multiple Assign CNAE Data Table Input Parameters" sap:VirtualizedContainerService.HintSize="486,411" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[SectionCodeTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(0)("CurrentSection").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[SectionTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(0)("Details").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[DivisionCodeTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(1)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[DivisionTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[String.Join(" ", dt_Subclass.Rows(1)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[GroupCodeTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(2)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[GroupTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[String.Join(" ", dt_Subclass.Rows(2)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[ClassCodeTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(3)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[ClassTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[String.Join(" ", dt_Subclass.Rows(3)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[SubclassCodeTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[dt_Subclass.Rows(4)("Details").ToString.Split(" "c).First.ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[SubclassTD]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[String.Join(" ", dt_Subclass.Rows(4)("Details").ToString.Split(" "c).Skip(1))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MultipleAssign>
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{SectionCodeTD, SectionTD, DivisionCodeTD, DivisionTD, GroupCodeTD, GroupTD, ClassCodeTD, ClassTD, SubclassCodeTD, SubclassTD}]" DataTable="[io_dt_CNAE]" DisplayName="Add Data Row to CNAE Data Table" sap:VirtualizedContainerService.HintSize="486,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Class link to navigate back" sap:VirtualizedContainerService.HintSize="486,157" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="35d95428-7f86-45d2-826f-d65d1033b03b" Version="V3">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=subclasse&amp;tipo=cnae&amp;versao=10&amp;subclasse=0111301" CvTextArgument="01.11-3" CvType="Text" DesignTimeRectangle="263, 957, 40, 14" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'01.11-3'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='{0}' /&gt;&quot;, in_Class)]" Guid="ba185794-ee5f-480d-a824-7685338d4f56" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAASCAYAAAAg9DzcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD+SURBVEhL7ZWxDoMgEED7Q937S071K1zcnP0EJzd/gvgVGuc23ciVE1COgF6Tmkji8BLlDu5xQbxJKSElLuGjSVxY1HB/PDV5B5Mbm+mhxFjVe+M+sTzG/LGDzDooSkHjjrBeLGuH5Zks7C7ELfjz/AGaXMVNs0SF+TUIJ2cVNt21OyLJ3q6jBWN53Pkem8JTW6hgAc0YeMeCWMQW3hIO5XHnL9BOuzGesMlhF4zlsYU1IYdTC9t8/V3pMd4Ztvxd2HzcM15zEM8JWYXJLWHO0G7ByFljC/vQ22n7lkDsgkjoHj5cWOH+CwJdp8IJsAivuzonr/eHCqfCJXwsEr4tnf/DdJv4ygAAAABJRU5ErkJggg==" InformativeScreenshot="b4f489d773e7ac9b4241f91a91e50de7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />

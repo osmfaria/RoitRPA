@@ -2,6 +2,7 @@
   <x:Members>
     <x:Property Name="in_Class" Type="InArgument(x:String)" />
     <x:Property Name="in_Group" Type="InArgument(x:String)" />
+    <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -99,6 +100,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ClassNavigate" sap:VirtualizedContainerService.HintSize="688,1764" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -185,6 +187,9 @@
                         <InArgument x:TypeArguments="x:String" x:Key="in_Subclass">
                           <VisualBasicValue x:TypeArguments="x:String" ExpressionText="SubclassCode" />
                         </InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
+                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>

@@ -1,11 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="SectionNavigate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Section" Type="InArgument(x:String)" />
+    <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1254,1875</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1254,1860</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SectionNavigate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -106,19 +107,19 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SectionNavigate" sap:VirtualizedContainerService.HintSize="688,1810" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SectionNavigate" sap:VirtualizedContainerService.HintSize="688,1795" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="626,1699" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="626,1684" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,1481" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,1467" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dt_Division" />
               <Variable x:TypeArguments="x:String" Name="divisionString" />
@@ -128,7 +129,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Click is using the in_Section as argument, and working as a Dynamic Selector" ClickType="Single" DisplayName="Click Section" sap:VirtualizedContainerService.HintSize="530,202" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
+            <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="Click is using the in_Section as argument, and working as a Dynamic Selector" ClickType="Single" DisplayName="Click Section" sap:VirtualizedContainerService.HintSize="530,199" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?option=com_cnae&amp;view=estrutura&amp;Itemid=6160&amp;tipo=cnae&amp;versao_classe=7.0.0&amp;versao_subclasse=10.1.0" CvTextArgument="A" CvType="Text" DesignTimeRectangle="135, 874, 11, 12" DesignTimeScaleFactor="1" FriendlyName="'A'" FullSelectorArgument="&lt;webctrl id='tbEstrutura' tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='TD' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl id='tbEstrutura' tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' class='' check:innerText='{0}' /&gt;&quot;, in_Section)]" Guid="3ce591cf-bb58-41d8-bf2f-ce9d9bcb0946" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEcAAAAbCAYAAAAu/JKTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD4SURBVFhH7dU9DoJAEIZhL0TvieiIlyB0xMoEeioqEy5AswmdsTXAHfYEIyuswrJOyWzxFU/8G5o3O+tJa01GWZYwadv2+x5xHN44sIc4DMRhIA4DcRiIwwgizlinFJ0vFCUNjZ7fpQQQp6cqmcKYOOeUqsE3I0M+ztBQPIWJ82J+rXv/nADxOPNKmROznKCAVks4zjbIL5Rv9niycexK2VVyPwsTjaNyexG7ClKe+aMJxukoMyGcO8b+rWdqPStDLo4qPhF2K7SsVpR32+8FCF/IYROLc73dV3eM3+P58j57FJwcBuIwEIeBOAzEYSAOA3EYiPOXpjeV0sGA82Wh6AAAAABJRU5ErkJggg==" InformativeScreenshot="660e946779a3e95f48f311d40bee1ede.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -144,12 +145,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NClick>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_Division]" DisplayName="Extract Table Data of Divisions" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-0' ReferenceName='Column-0' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1' ReferenceName='Column-1' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Division' ReferenceName='Column-2' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Link' ReferenceName='Column-2 Url' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="530,158" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_Division]" DisplayName="Extract Table Data of Divisions" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-0' ReferenceName='Column-0' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1' ReferenceName='Column-1' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Division' ReferenceName='Column-2' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Link' ReferenceName='Column-2 Url' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
               <uix:NExtractData.Target>
                 <uix:TargetAnchorable DesignTimeRectangle="108, 794, 860, 126" DesignTimeScaleFactor="1" FriendlyName="'Seção: A'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="b825ef5f-9c9b-47cd-b05a-65bc87b8455a" InformativeScreenshot="f86780d6d827bbf751309f33358b8c29.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
-            <Assign sap2010:Annotation.AnnotationText="Skips the first row of the data table since it is related to the Section&#xD;&#xA;&#xD;&#xA;The remeaning rows provide links for Divisions" DisplayName="Assign Division Data Table" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign sap2010:Annotation.AnnotationText="Skips the first row of the data table since it is related to the Section&#xA;&#xA;The remeaning rows provide links for Divisions" DisplayName="Assign Division Data Table" sap:VirtualizedContainerService.HintSize="530,139" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="sd:DataTable">[dt_Division]</OutArgument>
               </Assign.To>
@@ -162,13 +163,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each row in the division data table, a workflow will be invoke to navigate further" DataTable="[dt_Division]" DisplayName="For Each Row in Data Table Division" sap:VirtualizedContainerService.HintSize="530,545" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each row in the division data table, a workflow will be invoke to navigate further" DataTable="[dt_Division]" DisplayName="For Each Row in Data Table Division" sap:VirtualizedContainerService.HintSize="530,540" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,396" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,392" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="DivisionCode" />
                     </Sequence.Variables>
@@ -177,7 +178,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap2010:Annotation.AnnotationText="Each DivisionCode will be passed as argument for the next workflow to be used in the Dynamic Selector" DisplayName="Assign DivisionCode" sap:VirtualizedContainerService.HintSize="434,127" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign sap2010:Annotation.AnnotationText="Each DivisionCode will be passed as argument for the next workflow to be used in the Dynamic Selector" DisplayName="Assign DivisionCode" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_1">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[DivisionCode]</OutArgument>
                       </Assign.To>
@@ -190,7 +191,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DivisionNavigate workflow" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CNAE\Helpers\DivisionNavigate.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DivisionNavigate workflow" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CNAE\Helpers\DivisionNavigate.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_Division">
                           <VisualBasicValue x:TypeArguments="x:String" ExpressionText="DivisionCode" />
@@ -198,6 +199,9 @@
                         <InArgument x:TypeArguments="x:String" x:Key="in_Section">
                           <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Section" />
                         </InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
+                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
@@ -209,7 +213,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'todas as seções' to navigate back" sap:VirtualizedContainerService.HintSize="530,158" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'todas as seções' to navigate back" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="cba9be54-a46e-4217-8f55-a59b8acb84b7" Version="V3">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=secao&amp;tipo=cnae&amp;versaosubclasse=10&amp;versaoclasse=7&amp;secao=A" CvTextArgument="todas as secoes" CvType="Text" DesignTimeRectangle="423, 756, 133, 21" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'todas as seções'" FullSelectorArgument="&lt;webctrl id='botao-topo' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='botao-topo' tag='INPUT' type='button' class='botao-busca' aaname='todas as seções' check:text='todas as seções' /&gt;" Guid="daa333f7-5e34-4dbe-8866-885f903063e9" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIkAAAAZCAYAAAAFQg2KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJWSURBVGhD7ZdLjsMgDIbn/jfohZojpPsoa9ZZMbyxjTF9JG3U2tInTWpD4OfH0fwty2IVRUJNogwpJrlcLoqCUJMoQ9QkyhA1iTJETaIMOZ9Jbsb62NaJz/8Ac5DA2Dn8vdn1yte9iwNMMluzrXZic3fw8yZx+hWDVLPwte9hZ5P4DYYTVpN8ETuaZLLrFs43RW2TE05Yc+uNc2PW1iR0/L25lmTiEviWxptbA68TI9cSLcwMciM9yBqbCyfNLe/vWXY0iaftJFmQIgTpFDhfBSiHnerz+Hg4yYDX1f1Va1HOj0WkufPa0tgiMnpPXkdHZLGWPJM1Uj3wmql+j80d58I5atBnONgkaVPoNsDfqAiOzucG3z5skhDoHRLkthGThBgJK9U2hzPYLwSZj/lNnBt3NzTHixxskraz4NvA5KlJyoFEYWm3gMLE6BxAeW+auyc4DLRuiFALjYuis19A03U9UA9xblfL5Olle4aDTYKdHmvgb1lscLDEJLwpuE9KercPrhNQUzQmYWpdDEWmtdK83H4hsGtwv4lzY2rn5bR6jJ1N0pqiuR3EBDifRaz53CmQSHnjZK6cZw82j01rKx0oCd5bZ3kGyLXECORg6dj4nA+yc8mKqaS5aW3eY8eQD7CzSaoIPrAQNajw5cC8WM1/N6BDuDAmPtEDKiHcMrSOzVjjHxlD52DNlpBrq9lDgHdwY7EeeL90rDw3yRXzvcbuJlHuoR6mZMSzoCb5IKGjNJ3ifKhJPgD83NBP7xlRkyhD1CTKEDWJMqQxiaL0UJMoAxb7D9aCUvKeH//gAAAAAElFTkSuQmCC" InformativeScreenshot="bd2f716fcd6d0b9e4b569ec820e7687c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive" />
               </uix:NClick.Target>

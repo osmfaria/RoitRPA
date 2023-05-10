@@ -2,6 +2,7 @@
   <x:Members>
     <x:Property Name="in_Group" Type="InArgument(x:String)" />
     <x:Property Name="in_Division" Type="InArgument(x:String)" />
+    <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -192,6 +193,9 @@
                         <InArgument x:TypeArguments="x:String" x:Key="in_Group">
                           <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Group" />
                         </InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
+                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
+                        </InOutArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>

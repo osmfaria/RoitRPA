@@ -1,6 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetCNAEData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -102,7 +103,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sequence that retrieves CNAE data from the IBGE website. &#xD;&#xA;It extracts tables and provides variables for a dynamic selector, which navigates to the leaf node and extracts data row by row until all rows of sections A, B, and C are completely captured. &#xD;&#xA;&#xD;&#xA;The section choices (A, B, C) are declared in the configuration file and can be updated to capture different ranges in the future." DisplayName="GetCNAEData" sap:VirtualizedContainerService.HintSize="664,1912" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Sequence that retrieves CNAE data from the IBGE website. &#xA;It extracts tables and provides variables for a dynamic selector, which navigates to the leaf node and extracts data row by row until all rows of sections A, B, and C are completely captured. &#xA;&#xA;The section choices (A, B, C) are declared in the configuration file and can be updated to capture different ranges in the future." DisplayName="GetCNAEData" sap:VirtualizedContainerService.HintSize="664,1912" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -179,6 +180,9 @@
                               <InArgument x:TypeArguments="x:String" x:Key="in_Section">
                                 <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Seção&quot;).ToString" />
                               </InArgument>
+                              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
+                                <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
+                              </InOutArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                         </Sequence>
