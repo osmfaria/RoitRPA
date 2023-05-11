@@ -2,8 +2,8 @@ import pandas as pd
 from unidecode import unidecode
 import re
 
-file_path_input = r'D:\Roit\TestingPython\inputData.xlsx'
-file_path_output = r'D:\Roit\TestingPython\outputData.xlsx'
+file_path_input = r'D:\RoitRPA\RoitRPA\CNAE\Data\cnae.xlsx'
+file_path_output = r'D:\RoitRPA\RoitRPA\CNAE\Data\fcnae.xlsx'
 
 # remove accents and transform the text to lower case
 def remove_accents_and_lowercase(text):
