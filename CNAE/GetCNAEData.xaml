@@ -115,7 +115,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message (Initialize scraping)" sap:VirtualizedContainerService.HintSize="602,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Initialize proccess to scrape data from IBGE&quot;]" />
-    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Open Chrome on the IBGE website" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="602,1567" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[ParentBrowser]" ScopeGuid="7343a37b-b905-40fd-ba31-70f9ac39d42f" Version="V2">
+    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Open Chrome on the IBGE website" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="602,1567" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[ParentBrowser]" ScopeGuid="7343a37b-b905-40fd-ba31-70f9ac39d42f" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -181,15 +181,9 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SectionNavigate workflow" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CNAE\Helpers\SectionNavigate.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Section">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Seção&quot;).ToString" />
-                              </InArgument>
-                              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
-                                <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
-                              </InOutArgument>
-                              <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">
-                                <VisualBasicValue x:TypeArguments="ui:UiElement" ExpressionText="ParentBrowser" />
-                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Section">[Row("Seção").ToString]</InArgument>
+                              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">[io_dt_CNAE]</InOutArgument>
+                              <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">[ParentBrowser]</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                         </Sequence>

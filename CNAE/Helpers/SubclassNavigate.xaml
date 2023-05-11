@@ -130,7 +130,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="519,1480" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" OpenMode="Never" ScopeGuid="7c3a3846-d4dd-4645-b99e-91f93833a78b" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="519,1480" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="7c3a3846-d4dd-4645-b99e-91f93833a78b" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

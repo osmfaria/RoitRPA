@@ -119,7 +119,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="626,1604" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" OpenMode="Never" ScopeGuid="0faaa0b9-b535-4a90-958f-a06bf694d804" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="626,1604" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="0faaa0b9-b535-4a90-958f-a06bf694d804" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -195,18 +195,10 @@
                     </Assign>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DivisionNavigate workflow" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CNAE\Helpers\DivisionNavigate.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_Division">
-                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="DivisionCode" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_Section">
-                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Section" />
-                        </InArgument>
-                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
-                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
-                        </InOutArgument>
-                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">
-                          <VisualBasicValue x:TypeArguments="ui:UiElement" ExpressionText="in_ParentBrowser" />
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Division">[DivisionCode]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Section">[in_Section]</InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">[io_dt_CNAE]</InOutArgument>
+                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">[in_ParentBrowser]</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>

@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>678,1738</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,1738</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GroupNavigate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -121,7 +121,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="626,1562" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" OpenMode="Never" ScopeGuid="20242d2f-6be9-4613-8662-e92d2c90f213" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="626,1562" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="20242d2f-6be9-4613-8662-e92d2c90f213" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -186,18 +186,10 @@
                     </Assign>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ClassNavigate workflow" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CNAE\Helpers\ClassNavigate.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_Class">
-                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ClassCode" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_Group">
-                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Group" />
-                        </InArgument>
-                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
-                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
-                        </InOutArgument>
-                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">
-                          <VisualBasicValue x:TypeArguments="ui:UiElement" ExpressionText="in_ParentBrowser" />
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Class">[ClassCode]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Group">[in_Group]</InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">[io_dt_CNAE]</InOutArgument>
+                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">[in_ParentBrowser]</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
