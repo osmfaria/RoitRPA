@@ -116,7 +116,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <StateMachine InitialState="{x:Reference __ReferenceID2}" sap2010:Annotation.AnnotationText="RPA Test - ROIT&#xD;&#xA;&#xA;The UiPath Reframework project will be initiated and will begin by data scraping the CNAE table from the IBGE website using UiPath activities.&#xD;&#xA;The data scraped from the website will be traversed to extract the required sections and stored in a UiPath data table.&#xD;&#xA;The extracted data table will then be passed to a Python script that will perform formatting operations to improve the table's structure and format.&#xD;&#xA;After formatting, the Python script will return the updated data table back to the UiPath project.&#xD;&#xA;The updated data table will be saved as a new output file in the required format.&#xD;&#xA;Finally, the UiPath Reframework project will end, and the output file will be ready for further analysis or use.&#xA;&#xD;&#xA;" DisplayName="RPA ROIT" sap:VirtualizedContainerService.HintSize="1014,886" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID2}" sap2010:Annotation.AnnotationText="RPA Test - ROIT&#xA;&#xA;The UiPath Reframework project will be initiated and will begin by data scraping the CNAE table from the IBGE website using UiPath activities.&#xA;The data scraped from the website will be traversed to extract the required sections and stored in a UiPath data table.&#xA;The extracted data table will then be passed to a Python script that will perform formatting operations.&#xA;After formatting, the Python script will return the updated data table back to the UiPath project.&#xA;The updated data table will be saved as a new output file excel file.&#xA;Finally, the UiPath Reframework project will end, and the output file will be ready for further analysis or use.&#xA;&#xA;" DisplayName="RPA ROIT" sap:VirtualizedContainerService.HintSize="1014,886" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -127,7 +127,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Traverse CNAE table and scrape data" DisplayName="Get CNAE data" sap:VirtualizedContainerService.HintSize="251,102" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Traverse CNAE table and scrape data" DisplayName="Get CNAE data" sap:VirtualizedContainerService.HintSize="630,1745" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="584,1299" sap2010:WorkflowViewState.IdRef="Sequence_25">
           <Sequence.Variables>
@@ -253,7 +253,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Proccess the CNAE data table&#xD;&#xA;1) If processing the CNAE data table is successful, stop the process.&#xD;&#xA;2) If there is an exception, retry processing based on the specified number of tries in the configuration settings." DisplayName="Process CNAE data" sap:VirtualizedContainerService.HintSize="231,188" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Proccess the CNAE data table&#xA;1) If processing the CNAE data table is successful, stop the process.&#xA;2) If there is an exception, retry processing based on the specified number of tries in the configuration settings." DisplayName="Process CNAE data" sap:VirtualizedContainerService.HintSize="231,188" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
                 <Sequence sap:VirtualizedContainerService.HintSize="612,674" sap2010:WorkflowViewState.IdRef="Sequence_43">
                   <sap:WorkflowViewStateService.ViewState>
@@ -340,7 +340,7 @@
                 <Transition DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="450,507" sap2010:WorkflowViewState.IdRef="Transition_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">303.633333333333,628.666666666667 303.633333333333,658.666666666667 534,658.666666666667 534,63.86666666666666 477,63.86666666666666</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">303.633333333333,628.666666666667 303.633333333333,658.666666666667 600,658.666666666667 600,63.86666666666666 477,63.86666666666666</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">23</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">40</x:Int32>
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -645,9 +645,7 @@
                   <Transition.To>
                     <x:Reference>__ReferenceID1</x:Reference>
                   </Transition.To>
-                  <Transition.Condition>
-                    <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="SystemException Is Nothing" />
-                  </Transition.Condition>
+                  <Transition.Condition>[SystemException Is Nothing]</Transition.Condition>
                 </Transition>
               </State.Transitions>
             </State>
@@ -673,9 +671,7 @@
           <Transition.Action>
             <ui:LogMessage DisplayName="Log message (No more transations available)" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;Process finished, no scraped data available&quot;]" />
           </Transition.Action>
-          <Transition.Condition>
-            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="Not IsDataScraped and Not IsStop" />
-          </Transition.Condition>
+          <Transition.Condition>[Not IsDataScraped and Not IsStop]</Transition.Condition>
         </Transition>
         <Transition DisplayName="Stop Orchestrator" sap:VirtualizedContainerService.HintSize="450,507" sap2010:WorkflowViewState.IdRef="Transition_9">
           <sap:WorkflowViewStateService.ViewState>
@@ -688,18 +684,12 @@
           <Transition.To>
             <x:Reference>__ReferenceID1</x:Reference>
           </Transition.To>
-          <Transition.Condition>
-            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="IsStop" />
-          </Transition.Condition>
+          <Transition.Condition>[IsStop]</Transition.Condition>
         </Transition>
       </State.Transitions>
       <State.Variables>
         <Variable x:TypeArguments="x:String" Name="variable1" />
-        <Variable x:TypeArguments="x:Boolean" Name="IsStop">
-          <Variable.Default>
-            <Literal x:TypeArguments="x:Boolean" />
-          </Variable.Default>
-        </Variable>
+        <Variable x:TypeArguments="x:Boolean" Default="False" Name="IsStop" />
       </State.Variables>
     </State>
     <x:Reference>__ReferenceID3</x:Reference>
