@@ -3,11 +3,12 @@
     <x:Property Name="in_Class" Type="InArgument(x:String)" />
     <x:Property Name="in_Group" Type="InArgument(x:String)" />
     <x:Property Name="io_dt_CNAE" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="in_ParentBrowser" Type="InArgument(ui:UiElement)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1254,1829</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,1749</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ClassNavigate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,44 +102,42 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ClassNavigate" sap:VirtualizedContainerService.HintSize="688,1764" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ClassNavigate" sap:VirtualizedContainerService.HintSize="688,1684" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Subclass" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Subclass" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="626,1653" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="41d60dce-977b-4ecc-8eca-eaaa037abb6c" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="626,1573" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="[in_ParentBrowser]" OpenMode="Never" ScopeGuid="f27b2822-8c84-4bf2-8c33-7491629c2f38" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,1436" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="ClickTargetName" />
-              <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
-              <Variable x:TypeArguments="sd:DataTable" Name="dt_Subclass" />
-              <Variable x:TypeArguments="x:String" Name="subclassString" />
-              <Variable x:TypeArguments="x:String" Name="Subclass" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,1436" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Class" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41d60dce-977b-4ecc-8eca-eaaa037abb6c" Version="V3">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Class" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f27b2822-8c84-4bf2-8c33-7491629c2f38" Version="V3">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=grupo&amp;tipo=cnae&amp;versao=10&amp;grupo=011" CvTextArgument="01.11-3" CvType="Text" DesignTimeRectangle="262, 944, 42, 12" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'01.11-3'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='{0}' /&gt;&quot;, in_Class)]" Guid="8d42b469-f840-42ab-bd35-c060b7ac1710" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAASCAYAAAAg9DzcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEDSURBVEhL7ZVBCoMwEAD7Ie/9kqf6il7sKdBTfYKH4qHgJ4KvUHxE2Go2UTeasJQKBjwMWHezO1kSe1FKQUycwnsTs3ALZXaD5IrkkiaO9NV9iN2h7NaxJb48znopZockq6F34pMwFitATs+08FyI2/CH9bLQOXpYXQ3p8JxWLckxwma6dkdOMtl1oKEvj7ueEBZuIB+LicYE6G8psAk2Dglv53HXTywn7cRYwhZuQ18eW1iz7XBgYZuP98q+Y51hy7+F8XKP7wac4aycDEaYfiXwDDEm5DlrXGEX8nUKXzoECyJbB35vYfe/YD11RzgGtPDz9Zl3dUAe4k2FY+IU3hcFXxQ9AXckc8kGAAAAAElFTkSuQmCC" InformativeScreenshot="cc154193bc534a648e733e4af737d9ac.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_Subclass]" DisplayName="Extract Table Data Subclass" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-0' ReferenceName='Column-0' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1' ReferenceName='Column-1' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1 Url' ReferenceName='Column-1 Url' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Subclass' ReferenceName='Column-2' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Link' ReferenceName='Column-2 Url' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' name2='Column-1 Url' attr2='href' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="41d60dce-977b-4ecc-8eca-eaaa037abb6c" Version="V3">
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt_Subclass]" DisplayName="Extract Table Data Subclass" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-0' ReferenceName='Column-0' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1' ReferenceName='Column-1' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' IsDeleted='true' Name='Column-1 Url' ReferenceName='Column-1 Url' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Subclass' ReferenceName='Column-2' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Link' ReferenceName='Column-2 Url' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='fulltext' /&gt;&lt;column name='Column-1' attr='fulltext' name2='Column-1 Url' attr2='href' /&gt;&lt;column name='Column-2' attr='fulltext' name2='Column-2 Url' attr2='href' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NExtractData_2" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="f27b2822-8c84-4bf2-8c33-7491629c2f38" Version="V3">
               <uix:NExtractData.Target>
                 <uix:TargetAnchorable DesignTimeRectangle="100, 511, 860, 250" DesignTimeScaleFactor="1" FriendlyName="'Seção: A'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="b354d4d8-8eb8-46c7-ad0f-73011a064876" InformativeScreenshot="138cc69c02552bfb1dd03f0633762db3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
-            <Assign sap2010:Annotation.AnnotationText="Skips the first 4 rows of the data table since it is not related to Subclass&#xA;&#xA;The remeaning rows provide links for Subclasses" DisplayName="Assign Subclass Data Table" sap:VirtualizedContainerService.HintSize="530,139" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap2010:Annotation.AnnotationText="Skips the first 4 rows of the data table since it is not related to Subclass&#xA;&#xA;The remeaning rows provide links for Subclasses" DisplayName="Assign Subclass Data Table" sap:VirtualizedContainerService.HintSize="530,139" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="sd:DataTable">[dt_Subclass]</OutArgument>
               </Assign.To>
@@ -151,13 +150,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each row in the Subclass data table, a workflow will be invoked to navigate to the leaf node" DataTable="[dt_Subclass]" DisplayName="For Each Row in Data Table Subclass" sap:VirtualizedContainerService.HintSize="530,551" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each row in the Subclass data table, a workflow will be invoked to navigate to the leaf node" DataTable="[dt_Subclass]" DisplayName="For Each Row in Data Table Subclass" sap:VirtualizedContainerService.HintSize="530,551" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,392" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,392" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="SubclassCode" />
                     </Sequence.Variables>
@@ -166,7 +165,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap2010:Annotation.AnnotationText="Each SubclassCode will be passed as argument for the next workflow to be used in the Dynamic Selector" DisplayName="Assign SubclassCode" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign sap2010:Annotation.AnnotationText="Each SubclassCode will be passed as argument for the next workflow to be used in the Dynamic Selector" DisplayName="Assign SubclassCode" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_4">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[SubclassCode]</OutArgument>
                       </Assign.To>
@@ -179,7 +178,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SubclassNavigate workflow" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CNAE\Helpers\SubclassNavigate.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SubclassNavigate workflow" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CNAE\Helpers\SubclassNavigate.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_Class">
                           <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Class" />
@@ -190,6 +189,9 @@
                         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
                           <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
                         </InOutArgument>
+                        <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">
+                          <VisualBasicValue x:TypeArguments="ui:UiElement" ExpressionText="in_ParentBrowser" />
+                        </InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
@@ -203,7 +205,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Group link to navigate back" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41d60dce-977b-4ecc-8eca-eaaa037abb6c" Version="V3">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Group link to navigate back" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f27b2822-8c84-4bf2-8c33-7491629c2f38" Version="V3">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=classe&amp;tipo=cnae&amp;versao=10&amp;classe=01113" CvTextArgument="01.1 Producao de lavouras temporarias" CvType="Text" DesignTimeRectangle="233, 928, 27, 18" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'01.1'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='3' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='{0}' /&gt;&quot;, in_Group)]" Guid="bee5fbd9-7f28-4486-bd20-72f86c51c704" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABsAAAASCAYAAACq26WdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADDSURBVEhLY/j+/ft/euFRy6iCkSx7+H9Ffv5/XQsI7jiFqhCEn6xrBcq1/l/xCFMOGeNSB7cMomDW/1NwNqriU/0wh+C3DJ86qGVQX+Vv+/8ExH+07X8GUEPGuodoBmA3BIYJqYNaduZ/B0hB/xmoBCr/VD9EI8QwfJbhV0eUZTBMyDIYHkyW4Y8zGKaSZaip8fupWVgVYxgCVoeZTQhaBsIQRRCMLZ9R1TJaY7Blk2ZshvuI2tgruAnVMnrh4WrZ9/8AVbWnZ/ma3iIAAAAASUVORK5CYII=" InformativeScreenshot="3d1977163460523f507fa742462e80de.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
@@ -218,7 +220,7 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="1903, 512, 1096, 984" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAA4rSURBVGhDxZkJdFTVGccHCBBRSAhLAmSZ7JOZTDLZNwiECElYkmjRiq3COdKip61aBY+1LYviqSiSEIEooKxWcUOwp7QuxVMRiVDQVqlaNahBpWoGYhcw4X39/t+9982bNOJS295z/udb7pvM7/vuve+9Adc3MYZGDIi+JC5m7i0ZCU0b/ak7DpbntL85IRA8PrmQjk8uojcr84IHyrLbd+Rn7rklPaGpZlR0Y3zkILf++P9nAHp+Quw1OwIZewyosg6/ysRKH1YVaLE/Kd96utBz+OLYEXP+p8UAfKF77OK/TMjtPF5VYAkYw4RZgANSg5qciZVfQB9MzLM+nMQFsZozkzb+1wtZ6B7D4GZrKAgbjCW5iQBUnf6AfYGEr0GVny+xkvFh82lBUtxi/XXf3EBnnin0HZbuSQcBE25tUN1VA2TA7XiiyefT+5UBLpCtKE9i2LYSX/s3thoXx46c88b43GCok/kKyAZ1wmoZqMo8ywlp5ycAFD5DC3hIx2Quj46U+4NTR0Q1aoyvN7CcBtaAmW4CTlkGhNWAAqk7qawCBdgxQIqfy4WxNdCVAfGVjM92QoCuS4j9elvq+sS4xc7uhmAcPgDYmq6Jr0FkTvvO3LHxuVwIw8EyIGyH9mE7Khy+slzE6K9WBG5tZpnPuuzaKkDVMfEBZCxyBkjnBczkGRiQISloo/eg8hzr4tjhczTe2QcOz5/L/J0CiGXnL5VlR+yQ3UVt+cuUDzC2BrKjIkd1EhZQxvaSgPbyRRVKfyrxdsYPHvjFB7utxNse1kUAwddATiu+AXTK7mLvWAOW+y0bEL6GfLcMfg77Ss743bJs69e56Yc1Zt8DB8buIuQADwcMwYj66CrgjFWAADGWgRj8XUcOgCrGXMgq+UXv8DXXJsQu0bjhY9DIIe47fjwp1E2G4j9iDpQGCvmYE2vEQB21FXTy3lY6degAdb9/jOzR3UXWyYN05ugK6jlcTz1thawC6t6fb/XsL1AxrPF5rseeE9/Wx0/lBKPPGxCtsUPDfWX+pspNjXRoWpGGdcAJoAbWXXJ29YNZtQL9ZYf11ye4kBkaKs/q3h+wul8IMLAGbZM8F4hcnvgqp+KfXxEXvgqDRgxx5//yQipgXbVsqg2GZQ6HVsJSi3hJg83L6UxXl0ZT4/2gRb966TSt33OK1rGefe0zeuODHj2rR08Xr8jtDBRg0FyxCtbErBeQU+ICWTmS//jJ7PBViKlMnBu4v8HKu7+R8u+/gH59UYkGVPs0bC9ir7KP/Xhiw1pNo8YTh0/TlZv+RkWLT1DxkpNii5Zosd/Q/Clf85m+Wo0z77UaMOp5IZd9tuyfAbj2eV7N7cvmouDn0NXfHnmNxne5PLdWHQ5sa7AAj0Iuv71WwWrod0oBzdaozE+dzbdpBHT8DM3fqMALNXAhfC3Jw+qicC0+YwavhEAp+Xk7+TUsWxas+JzrfsEn+afXuPcIPLZP7tZ6K5cLyNvWSAEW7Or5FdY7pT6LOy3A8I/quKNxqmW2DUBmNnWFARcsCsnOOeYhfMYugg95z6FahvRZ3fsAmM1+NgOH/J59sD6W185Fn9s/2jWsILYhsLWBeqvi3np6tdJvHS0BOIrIJtijJV7r0189rr6Yx/fv+5RBgw4p2PywXDAU85yJv8efNcM6+aKGZkARYH0cZyHmAjiGRRESe+nyuqi5rrGX+ppyt9STUoNYFJCzZaZ1248m2NDtJT5qL/VRxwVT9VcS7eI9D5C+pYroW6G5XYdO67/G5/rFUhtOKcu2XAhbDxcD3yO68+rRza7UG8v25GyuJ//mmZazCP/mGRbybVMCJPBan6z8hf46oul3nqS8nwdDYqCw+PPkuG6eYxXOvLtaQzPg85kW1ANxrHOOOQ89+ov4x11ZK6rbczbPpL7k3zTDmn1rtdVelGW9zWov9tI///CifNlrfFsMMAAEEOOfXZ195IL2WbBOtAkgQyvtyxTo7r3pKIRzGRynMzziDHrrkeR2V/am6VbOJgZm+UUzxEcePnK7GvKkgLe5AHN4f3fkM8plINHPtNWAyjpzzjxbXM8y1+w02+hUBwNmCGjP8+kOq9S9N83iYsT2PJ9GH+1ODrr8G2dQ9kaGZft5qm6ppbcLPdZbBZmW+iai1t/9k3IYwsjAhuX68A28M7/2mX/ov8rnYG8aAFmpAmnUvTfF6tmbKvOSg8/W5ds4zcpmyHBNp+z7WOz77ptmeVnNV5TSWwUeuwB8qYFwyn+WuPec9+o/UmpjMxVPqqfa2lryeDyUmppKdROTrVlTE+junyRS+2MpDKv1fCoKoe7nkrk4tuy7slbXBL331Vk+ALPgw/runSYx8t5766zi1lp6ucLLL2kdUsDjh06R/6edlP3TT8QCTqzT72XNtZ4fvUzx5d+jUaNGUWxsrGjs2LEUFxdHCQkJ5Ha77XjcuHF03WVuOrojmcHdvApsoefcXFQyudJun9QOSCiLQW1wtkbIQzdeU0H/ONgmBRzjgwcgJQXXt8Ln0i7dTqPGJtPo0aNp+PDhNGTIEBo4cCDxM1XUv39/ioyMlKLi4+OlABSV43PT7lUKvPu5RAt686Fx7a74H+Tv8G6Yxl1WsN4NdWF+1oZaC5I8X3fwkXVSAMbcDSfJx1A+hlT27Mq4ZCMlJSWJ0P1+/frZ0AUFBTRjBm9Zn48GDRpEgwcPFnAjrEpaWho9fBuKSKTu3ydYT7fE7nHFXeJtUnAKVorRMeRZX8MFwNZa0CVNDRqfaMcfTpP3pk/Iy3Ai9gEquV7yXLqZMjIyKD09XSy6DPiIiAi66KKLaPfu3fTQQw9RTU2NnAN0H+DJyckCD8HPzMyk37agiAS684dRza6osnFzASmg62sJkmLWG6mckorb3n9Zl0A0Z30XZTGgEWCzbvrYBpf8ta+QL1BK2dnZInQSXUcB2EobNmyg/fv30/bt22UVxowZQ4WFhXKt1+uVolEMPpeTk0PlJfxqsyOR6sdHNrgGnBMRLXDrailz3VQpwiM+F8XWKeRwTfUDc6jr9N+kgI7OM3T+7UHyMDTAPT9RNuTzwZ1+A+Xn51MgEBAw7GvAR0dHS27Xrl104MABeuCBB2jhwoXS7dzcXCkAq4FtlZWVJTGux9xN8zIsd+wA9SM/4fqiPZ51NRq0hjLvmcrwHN9jciovsc7duq9VCsBAEZevPynAvYXuAx7gUEVFhRSAPY7tgHjnzp2yfdDdkSNHyqrgGpwVbJu8vDzy+/0i/C3EKILPiiogujrxmkwGM8q4e4oViqeG5WXubpW76+BWXYIajx08RZOXd1IGg2eyYNO/dZfc39E9fGlJSYmAARQHt7y8nNasWUOrVq2SYhhHYmwl+Ng2gEZxED4DoQi+EVwrBfSPjIhOa6oKpjMcJIAaEjZDC3OwzhxWouuU2k5m/PlYDz316mlqeervVDBhuuzpxMRE6Sb2c0pKisQAGz9+PC1atEj2/6xZsyR3/PhxevDBB6VIXA9gs3XMSiLHc89KARgxM1IWG6iMVoZtPd/KaJ3CPotzaTpOW8tWx+l6fuK271iPvvZbjR8+0CnzoMK2MMXgLoNVKS0tpW3btlFbWxvV19fT7Nmz6ciRI/TKK6/I0xlFFxUVyd9BEfCLi4ulCD4XoX8nwiqkrJjUacDS17JgxT8/LAa0HWNOx5O2fpdu3dtK+4+9RO91fSgFmKct4AENYQvhKYuDiW2xZMkSev3112nLli1UV1dHzc3NtGzZMtle2EKm4ygCBUBmJTS+GsOnpyzmDgtM6tpqywYXa6Ti1DWYlxWxfeTT1ighB2sOIu79OLQQ7jKAx5aAnTJlCj355JO0b98+amlpoQULFkjBKBK3UcCbIswKmCI0emgk3Fhy2EAYGfi0NdVazvnesTNXTdGJI+WVASth3nUAjdsjDjTuLNhKy5cvl2fB0qVLaeXKlVI0thtuAAAFMM4H4E0BfHt9SWOHRkRMpDv5jspg6upqMgKI06asnmwpW2XBByysUpXMGUWmRVn8Z+WOYoSDia2B/Y99jaKw/9F9bKd58+bJOxLOCopF5wGNApwrwKsZOsTOMbQ4bm7yXVUWpEAma7F/F1uI4xS2oWvUHGI7zzbmQn5n71UA7kJYARQAIcYqTZ48mW6++WaaP38+DR06VPIowHTebCGsHCw/L9RttK8RU5eyBCB9Kbllkg1p51uq/u06KGFJ2b8VAHhsEWwN3PuxhQA7bNgwOdTofFRUlGwvc1YA3PsM2A+yzxvRde7FAsZyM3SythDgxF/FfguKqhLZ8zqGPa84LqwAdBdnAvDoJgDxuoADf84558idCtfA4gzg7lNWVmYfZhTADdgExi8cQ7JHNibeNj7IoDZk8qoqSlo1keEnWvBNLpmvQR5CjM/AH7eoxOoXOSCsCLyFovMoAIDoNJ4V5uDiVQPX4bdCTEyMnBnzHODrT3xh950jYnikO35RSbsANjN4s7YcCyT7Sc2VLDVny56vtGZenRhWAITfAwYOt9YRI0YQ3oOwfXpfC+EVHEXzefl6/3sZVZu02IAlMpS7eaKAJjbBV9b4SU1qDqpYU0pHfzOc1t8wqE8wCK/XkPmR83niFZnL9usPrMaI2ZkbAQpIpxLunCAFJDRNkDn2Jb9+O/8MfGaw1f1MJD28dCANO7dvuC/QCdZ/9v/GzoFCziuKmztmQcFhgAvwykpbKldJ5atLAR/S04Ppja0DrcumqB80X1I4sF9+z3/VgWJw2KMbU5pGXeXfM/Znxe0oIn7FeOvBh8fRRzsjgm/cH9H+yNKIHSuuGtB0WU2/OdHn9sN/UAAK93I8kPBUNcDwkcPcWcBdrn8BLeK8yM+UtKEAAAAASUVORK5CYII=" InformativeScreenshot="500d94a189709edf018041b5923ad536.jpg" Selector="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" Title="IBGE | Concla | Busca online" Url="https://cnae.ibge.gov.br/?view=grupo&amp;tipo=cnae&amp;versao=10&amp;grupo=011" />
+        <uix:TargetApp Area="0, 0, 0, 0" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>

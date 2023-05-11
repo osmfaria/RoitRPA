@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1254,1977</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>951,1977</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetCNAEData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,9 +101,13 @@
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Sequence that retrieves CNAE data from the IBGE website. &#xA;It extracts tables and provides variables for a dynamic selector, which navigates to the leaf node and extracts data row by row until all rows of sections A, B, and C are completely captured. &#xA;&#xA;The section choices (A, B, C) are declared in the configuration file and can be updated to capture different ranges in the future." DisplayName="GetCNAEData" sap:VirtualizedContainerService.HintSize="664,1912" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:UiElement" Name="ParentBrowser" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -111,7 +115,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message (Initialize scraping)" sap:VirtualizedContainerService.HintSize="602,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Initialize proccess to scrape data from IBGE&quot;]" />
-    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Open Chrome on the IBGE website" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="602,1567" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="7343a37b-b905-40fd-ba31-70f9ac39d42f" Version="V2">
+    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Open Chrome on the IBGE website" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IBGE | Concla | Busca online" sap:VirtualizedContainerService.HintSize="602,1567" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OutUiElement="[ParentBrowser]" ScopeGuid="7343a37b-b905-40fd-ba31-70f9ac39d42f" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -183,6 +187,9 @@
                               <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CNAE">
                                 <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dt_CNAE" />
                               </InOutArgument>
+                              <InArgument x:TypeArguments="ui:UiElement" x:Key="in_ParentBrowser">
+                                <VisualBasicValue x:TypeArguments="ui:UiElement" ExpressionText="ParentBrowser" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                         </Sequence>

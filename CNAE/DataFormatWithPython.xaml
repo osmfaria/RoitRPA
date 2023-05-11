@@ -1,4 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DataProcessWithPython" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="536,546" sap2010:WorkflowViewState.IdRef="DataProcessWithPython_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DataProcessWithPython" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>889,619</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>DataProcessWithPython_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -29,6 +37,7 @@
       <x:String>UiPath.Python.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -70,16 +79,38 @@
       <AssemblyReference>System.ComponentModel</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="This workflow loads the 'cnae.xlsx' file and performs various data formatting operations on its contents. The resulting data is saved to a new output file named 'fcnae.xlsx'" DisplayName="DataProcessWithPython" sap:VirtualizedContainerService.HintSize="546,481" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="WorkingFolder">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;WorkingFolder&quot;).ToString" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="PythonPath">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;PythonPath&quot;).ToString" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="PythonLibraryPath">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;PythonLibraryPath&quot;).ToString" />
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="484,328" sap2010:WorkflowViewState.IdRef="PythonScope_1" LibraryPath="C:\Users\Osmar\AppData\Local\Programs\Python\Python310\python310.dll" Path="C:\Users\Osmar\AppData\Local\Programs\Python\Python310" TargetPlatform="x64" Version="Python &gt;=3.10" WorkingFolder="D:\RoitRPA\RoitRPA">
+    <p:PythonScope OperationTimeout="{x:Null}" DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="484,328" sap2010:WorkflowViewState.IdRef="PythonScope_1" LibraryPath="[PythonLibraryPath]" Path="[PythonPath]" TargetPlatform="x64" Version="Python &gt;=3.10" WorkingFolder="[WorkingFolder]">
       <p:PythonScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -94,7 +125,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script main.py" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="LoadScript_1" Result="[py_Script]" ScriptFile="D:\RoitRPA\RoitRPA\main.py" />
+            <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script main.py" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="LoadScript_1" Result="[py_Script]" ScriptFile="main.py" />
             <p:InvokeMethod Parameters="{x:Null}" Result="{x:Null}" DisplayName="Invoke Python Method format_excel" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" Instance="[py_Script]" Name="format_excel" />
           </Sequence>
         </ActivityAction>
