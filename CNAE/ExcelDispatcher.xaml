@@ -106,7 +106,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:FileExistsX DisplayName="File Exists" Exists="[isExcelFileFound]" sap:VirtualizedContainerService.HintSize="712,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="CNAE\Data\fcnae.xlsx" />
+    <ui:FileExistsX DisplayName="Check Excel formatted file Exists" Exists="[isExcelFileFound]" sap:VirtualizedContainerService.HintSize="712,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="CNAE\Data\fcnae.xlsx" />
     <If Condition="[isExcelFileFound]" sap:VirtualizedContainerService.HintSize="712,1429" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="678,1069" sap2010:WorkflowViewState.IdRef="Sequence_3">
