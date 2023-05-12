@@ -42,7 +42,7 @@ Para executar localmente este app, siga as intruções abaixo:
 - Clone este repositório;
 - Para executar localmente, certifique-se de ter o Python instalado em seu sistema;
 - No arquivo Config.xlsx os seguintes campos devem ser preenchidos: 
-    - SectionSelection (quais seções do CNAE devem ser percorridas, ex: A B C, devem esta separados somente por espaço)
+    - SectionSelection (quais seções do CNAE devem ser percorridas, ex: A B C, devem estaR separados somente por espaço)
     - PythonLibraryPath (caminho para a pasta onde o arquivo python*.dll, na pasta onde o python está instalado)
     - PythonPath (caminho para a pasta onde o python está instalado)
     - WorkingFolder (caminha para a pasta principal do projeto)
