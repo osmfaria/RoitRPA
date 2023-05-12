@@ -13,7 +13,7 @@ Este projeto está dividido em 3 repositórios por questões de organização, d
 - Buscar transaction items na queue do orchestrator;
 - Enviar dados através de POST requests para a API.
 
-**3) Repositório do backend [aqui](https://github.com/osmfaria/roit-api)** 
+**3) Repositório do backend | API [aqui](https://github.com/osmfaria/roit-api)** 
 - Backend em python com um postgreSQL database para armazenar os dados do CNAE.
 
 ## 📑 State Machines
