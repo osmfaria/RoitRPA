@@ -1,27 +1,31 @@
-### Documentation is included in the Documentation folder ###
+### Test Técnico - Engenheiro de RPA ###
+Este projeto baseado em sate machines, utilizando REFramework
 
+## 🎯 Objetivo:
+Este projeto está dividido em 3 repositórios por questões de organização, dois deles contém workflows e o outro o app backend, as divisões foram baseadas nas seguintes tasks:
 
-### REFrameWork Template ###
-**Robotic Enterprise Framework**
+**1) Repositório atual, workflow utilizando template REF, atua como Dispatcher**
+- Data scraping dos dados de CNAE de determinadas seções salvando em um arquivo de excel
+- Invocar python script para formatação de dados
+- Adicionar os dados formatados do excel em queues no orchestrator 
 
-* Built on top of *Transactional Business Process* template
-* Uses *State Machine* layout for the phases of automation project
-* Offers high level logging, exception handling and recovery
-* Keeps external settings in *Config.xlsx* file and Orchestrator assets
-* Pulls credentials from Orchestrator assets and *Windows Credential Manager*
-* Gets transaction data from Orchestrator queue and updates back status
-* Takes screenshots in case of system exceptions
+**2) Repositório do workflow utilizando template REF, atua como Performer [aqui](https://github.com/osmfaria/RoitRPAPerformer)**
+- Buscar transaction items na queue do orchestrator
+- Enviar dados através de POST requests para a API
 
+**3) Repositório do backend [aqui](https://github.com/osmfaria/roit-api)** 
+- Backend em python com um postgreSQL database para armazenar os dados do CNAE
 
-### How It Works ###
+## 📑 State Machines
 
-1. **INITIALIZE PROCESS**
- + ./Framework/*InitiAllSettings* - Load configuration data from Config.xlsx file and from assets
- + ./Framework/*GetAppCredential* - Retrieve credentials from Orchestrator assets or local Windows Credential Manager
- + ./Framework/*InitiAllApplications* - Open and login to applications used throughout the process
+1. **Initialization**
+ - Inclui a execução das atividades de inicialização padrão do template de REFramework, sendo a principal delas a leitura do arquivo Config.xlsx, aqui foram setadas a pasta do orchestrator em que a queue se encontra assim como o nome da queue.
+ - Criada variável no Config.xlsx para amazenar quais seções do CNAE devem ser lidas (valor inicial A, B e C)
+ - Setado também o número máximo de tentativas caso ocorra uma excenption para 2.
+ - Por fim foi criado um kill process para excel e chrome que são os aplicativos utilizados neste workflow.
 
 2. **GET TRANSACTION DATA**
- + ./Framework/*GetTransactionData* - Fetches transactions from an Orchestrator queue defined by Config("OrchestratorQueueName") or any other configured data source
+ - Conjunto de loops trabalhando com data scraping e seletores dinâmicos para pecorrer a tabela com os dados CNAE.
 
 3. **PROCESS TRANSACTION**
  + *Process* - Process trasaction and invoke other workflows related to the process being automated 
