@@ -1,43 +1,52 @@
 ### Test Técnico - Engenheiro de RPA ###
-Este projeto baseado em sate machines, utilizando REFramework
+Este projeto foi realizado com base state machines, utilizando REFramework
 
 ## 🎯 Objetivo:
 Este projeto está dividido em 3 repositórios por questões de organização, dois deles contém workflows e o outro o app backend, as divisões foram baseadas nas seguintes tasks:
 
 **1) Repositório atual, workflow utilizando template REF, atua como Dispatcher**
-- Data scraping dos dados de CNAE de determinadas seções salvando em um arquivo de excel
-- Invocar python script para formatação de dados
-- Adicionar os dados formatados do excel em queues no orchestrator 
+- Data scraping dos dados de CNAE do website do IBGE salvando em um arquivo de excel;
+- Invocar python script para formatação de dados;
+- Adicionar os dados formatados do excel em uma queue no orchestrator.
 
 **2) Repositório do workflow utilizando template REF, atua como Performer [aqui](https://github.com/osmfaria/RoitRPAPerformer)**
-- Buscar transaction items na queue do orchestrator
-- Enviar dados através de POST requests para a API
+- Buscar transaction items na queue do orchestrator;
+- Enviar dados através de POST requests para a API.
 
 **3) Repositório do backend [aqui](https://github.com/osmfaria/roit-api)** 
-- Backend em python com um postgreSQL database para armazenar os dados do CNAE
+- Backend em python com um postgreSQL database para armazenar os dados do CNAE.
 
 ## 📑 State Machines
+Nesta sessão serão descritos as principais tasks realizadas por cada state machine do REF deste repositório
 
-1. **Initialization**
- - Inclui a execução das atividades de inicialização padrão do template de REFramework, sendo a principal delas a leitura do arquivo Config.xlsx, aqui foram setadas a pasta do orchestrator em que a queue se encontra assim como o nome da queue.
- - Criada variável no Config.xlsx para amazenar quais seções do CNAE devem ser lidas (valor inicial A, B e C)
- - Setado também o número máximo de tentativas caso ocorra uma excenption para 2.
+**1. Initialization**
+ - Inclui a execução das atividades de inicialização padrão do template de REFramework, sendo a principal delas a leitura do arquivo Config.xlsx, aqui foram setadas a pasta do orchestrator em que a queue se encontra assim como o nome da queue;
+ - Criada variável no Config.xlsx para amazenar quais seções do CNAE devem ser lidas (valor inicial A, B e C);
+ - Setado também o número máximo de tentativas caso ocorra uma excenption para 2;
  - Por fim foi criado um kill process para excel e chrome que são os aplicativos utilizados neste workflow.
 
-2. **GET TRANSACTION DATA**
- - Conjunto de loops trabalhando com data scraping e seletores dinâmicos para pecorrer a tabela com os dados CNAE.
+**2. GET CNAE DATA**
+ - Conjunto de loops trabalhando com data scraping e seletores dinâmicos para pecorrer a tabela com os dados CNAE e criar uma data table.
 
-3. **PROCESS TRANSACTION**
- + *Process* - Process trasaction and invoke other workflows related to the process being automated 
- + ./Framework/*SetTransactionStatus* - Updates the status of the processed transaction (Orchestrator transactions by default): Success, Business Rule Exception or System Exception
+**3. PROCESS CNAE DATA**
+- Invoca workflow para formatar dados do excel com um script em python;
+- Invocar workflow para adicionar bulk Queue Items ao orchestrator.
 
-4. **END PROCESS**
- + ./Framework/*CloseAllApplications* - Logs out and closes applications used throughout the process
+**4. END PROCESS**
+ - Fecha chome browser e excel.
 
 
-### For New Project ###
+## 📋 Guia de instalação
+Para executar localmente este app, siga as intruções abaixo:
 
-1. Check the Config.xlsx file and add/customize any required fields and values
-2. Implement InitiAllApplications.xaml and CloseAllApplicatoins.xaml workflows, linking them in the Config.xlsx fields
-3. Implement GetTransactionData.xaml and SetTransactionStatus.xaml according to the transaction type being used (Orchestrator queues by default)
-4. Implement Process.xaml workflow and invoke other workflows related to the process being automated
+- Clone este repositório;
+- Para executar localmente, certifique-se de ter o Python instalado em seu sistema;
+- No arquivo Config.xlsx os seguintes campos devem ser preenchidos: 
+    - SectionSelection (quais seções do CNAE devem ser percorridas, ex: A B C, devem esta separados somente por espaço)
+    - PythonLibraryPath (caminho para a pasta onde o arquivo python*.dll, na pasta onde o python está instalado)
+    - PythonPath (caminho para a pasta onde o python está instalado)
+    - WorkingFolder (caminha para a pasta principal do projeto)
+    - OrchestratorQueueName (Criei uma Queue no orchestrator e indique aqui o nome)
+    - OrchestratorQueueFolder (Indique qual pasta está sendo utilizada no orchestrator)
+
+
