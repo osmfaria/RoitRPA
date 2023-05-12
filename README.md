@@ -1,7 +1,7 @@
 ### Test Técnico - Engenheiro de RPA ###
 Este projeto foi realizado com base state machines, utilizando REFramework
 
-## 🎯 Objetivo:
+## 🎯 Objetivo
 Este projeto está dividido em 3 repositórios por questões de organização, dois deles contém workflows e o outro o app backend, as divisões foram baseadas nas seguintes tasks:
 
 **1) Repositório atual, workflow utilizando template REF, atua como Dispatcher**
