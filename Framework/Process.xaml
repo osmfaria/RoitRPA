@@ -102,7 +102,7 @@
       <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Workflow: Convert DataTable to Excel File&#xD;&#xA;&#xD;&#xA;Invoke the &quot;DataFormatWithPython&quot; workflow to format the Excel file and generate a new output Excel file.&#xD;&#xA;&#xD;&#xA;Invoke the &quot;Dispatcher&quot; workflow to create queue items using the Excel file generated in the previous workflow." DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,782" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Workflow: Convert DataTable to Excel File&#xA;&#xA;Invoke the &quot;DataFormatWithPython&quot; workflow to format the Excel file and generate a new output Excel file.&#xA;&#xA;Invoke the &quot;Dispatcher&quot; workflow to create queue items using the Excel file generated in the previous workflow." DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,782" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
