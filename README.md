@@ -19,7 +19,7 @@ Este projeto está dividido em 3 repositórios por questões de organização, d
 ## 📑 State Machines
 Nesta sessão serão descritos as principais tasks realizadas por cada state machine do REF deste repositório
 
-**1. Initialization**
+**1. INITIALIZATION**
  - Inclui a execução das atividades de inicialização padrão do template de REFramework, sendo a principal delas a leitura do arquivo Config.xlsx, aqui foram setadas a pasta do orchestrator em que a queue se encontra assim como o nome da queue;
  - Criada variável no Config.xlsx para amazenar quais seções do CNAE devem ser lidas (valor inicial A, B e C);
  - Setado também o número máximo de tentativas caso ocorra uma excenption para 2;
