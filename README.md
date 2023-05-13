@@ -16,6 +16,9 @@ Este projeto está dividido em 3 repositórios por questões de organização, d
 **3) Repositório do backend | API [aqui](https://github.com/osmfaria/roit-api)** 
 - Backend em python com um postgreSQL database para armazenar os dados do CNAE.
 
+** Extra [frontend](https://roit.vercel.app/)
+- Frontend para consulta dos dados do salvos no banco de dados.
+
 ## 📑 State Machines
 Nesta sessão serão descritos as principais tasks realizadas por cada state machine do REF deste repositório
 
