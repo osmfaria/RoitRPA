@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>951,1738</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>678,1738</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DivisionNavigate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -203,7 +203,7 @@
             </ui:ForEachRow>
             <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Section to navigate back" sap:VirtualizedContainerService.HintSize="530,157" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d74fb831-5380-4689-98f3-ebfdb17c4d05" Version="V3">
               <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=divisao&amp;tipo=cnae&amp;versao=10&amp;divisao=01" CvTextArgument="A AGRICULTURA, PECUARIA, PRODUCAO FLORESTAL, PESCA E AQUICULTURA" CvType="Text" DesignTimeRectangle="204, 851, 9, 14" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'A'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='A' /&gt;&quot;, in_Section)]" Guid="3d4a8164-4351-4bc8-a2cd-c67826796bfd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA0AAAASCAYAAACAa1QyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAClSURBVDhP1ZAxDoQgEEX3Qtvvkewo9wQmdPbGA1hZegjiJTTegfLr4IDOQKHNJlu8EJh5w4eX9x5P+T9pgv0YvHes07WDXHJtEALNJGtMJrmGhBaWV6fqhJI4Gt3AN5YiSkk0XgZce3aEFKPFSHofOaVlREWTC1TDXJbWoQ4N8g0c0YxY01mSZvSGpuZRjog1+uU8kx9xkyTpd2jMt8ulJ/xK8tgAMt484Esjvz8AAAAASUVORK5CYII=" InformativeScreenshot="8ffabda7d72d56a41a2cb2a953773e02.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector, Image, CV" Version="V2" Visibility="Interactive" />
+                <uix:TargetAnchorable BrowserURL="https://cnae.ibge.gov.br/?view=divisao&amp;tipo=cnae&amp;versao=10&amp;divisao=01" CvTextArgument="A AGRICULTURA, PECUARIA, PRODUCAO FLORESTAL, PESCA E AQUICULTURA" CvType="Text" DesignTimeRectangle="204, 851, 9, 14" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'A'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='A' /&gt;" FuzzySelectorArgument="[string.Format(&quot;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='' aaname='{0}' check:innerText='{0}' /&gt;&quot;, in_Section)]" Guid="3d4a8164-4351-4bc8-a2cd-c67826796bfd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA0AAAASCAYAAACAa1QyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAClSURBVDhP1ZAxDoQgEEX3Qtvvkewo9wQmdPbGA1hZegjiJTTegfLr4IDOQKHNJlu8EJh5w4eX9x5P+T9pgv0YvHes07WDXHJtEALNJGtMJrmGhBaWV6fqhJI4Gt3AN5YiSkk0XgZce3aEFKPFSHofOaVlREWTC1TDXJbWoQ4N8g0c0YxY01mSZvSGpuZRjog1+uU8kx9xkyTpd2jMt8ulJ/xK8tgAMt484Esjvz8AAAAASUVORK5CYII=" InformativeScreenshot="8ffabda7d72d56a41a2cb2a953773e02.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IBGE | Concla | Busca online' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
               </uix:NClick.Target>
             </uix:NClick>
           </Sequence>
